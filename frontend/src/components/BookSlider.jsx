@@ -25,7 +25,7 @@ const BookSlider = ({ data, title, setFavMsg, setErrMsg }) => {
           bookId: value?._id,
         };
         const response = await axios.put(
-          `https://library-management-system-api.onrender.com/user/addFav`,
+          `http://localhost:8000/user/addFav`,
           dataToSend
         );
         setFavMsg(response?.data?.message);

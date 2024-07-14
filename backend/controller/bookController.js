@@ -101,6 +101,48 @@ export const requestedBooksRoute = async (req, res, next) => {
   }
 };
 
+export const deleteBook = async (req, res, next) => {
+  try {
+    const book = await Books.findById(req.params.id);
+
+    if (book) {
+      await Books.findByIdAndDelete(req.params.id);
+      res.status(200).json({
+        message: "Book deleted successfully!",
+      });
+    } else {
+      res.status(404).json({
+        message: "Book not found!",
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updateBook = async (req, res, next) => {
+  try {
+    const updatedBook = await Books.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedBook) {
+      return res.status(404).json({
+        message: "Book not found!",
+      });
+    }
+
+    res.status(200).json({
+      message: "Book updated successfully!",
+      updatedBook,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const moveToRentedRoute = async (req, res, next) => {
   try {
     const getReqBook = await Request.findOne({

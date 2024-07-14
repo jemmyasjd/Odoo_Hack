@@ -22,7 +22,7 @@ const FavouritePage = () => {
   const getFavsFromAPI = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/user/getfav/${users?.user?.id}`
+        `http://localhost:8000/user/getfav/${users?.user?.id}`
       );
       dispatch(addInitFavBooks(response?.data));
     } catch (err) {
@@ -33,7 +33,7 @@ const FavouritePage = () => {
   const deleteFavourite = async (value) => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/user/deletefav`,
+        `http://localhost:8000/user/deletefav`,
         {
           userId: users?.user?.id,
           bookId: value?._id,

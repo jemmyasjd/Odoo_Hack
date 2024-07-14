@@ -27,7 +27,7 @@ const CreateBook = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/books/create`,
+        `http://localhost:8000/books/create`,
         newBook
       );
       setMessage(response?.data?.message);

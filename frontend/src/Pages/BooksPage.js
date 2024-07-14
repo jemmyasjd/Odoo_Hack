@@ -17,7 +17,7 @@ const BooksPage = () => {
   const getFavsFromAPI = async () => {
     try {
       const response = await axios.get(
-        `https://library-management-system-api.onrender.com/user/getfav/${users?.user?.id}`
+        `http://localhost:8000/user/getfav/${users?.user?.id}`
       );
       dispatch(addInitFavBooks(response?.data));
     } catch (err) {
